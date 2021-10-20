@@ -22,14 +22,18 @@ const Expenses = (props) => {
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {filteredExpenses.map((expense) => (
+      {/* Long statements like if and for do not work in dynamic expession, use terniary expressions instead*/}
+      {filteredExpenses.length === 0 ? ( 
+       <p>No Expenses Found.</p>) : ( 
+         filteredExpenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
         />
-      ))}
+      ))
+      )}
     </Card>
   );
 }
